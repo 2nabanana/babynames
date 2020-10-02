@@ -66,17 +66,17 @@ def extract_names(filename, summary):
         print(word)
         if word.startswith('Popularity'):
           year = word[14:18]
-          print("year and line", year, n)
+          #print("year and line", year, n)
           break
     #print("h3 found n",n )
     if line.startswith('<tr') and line.endswith('td>\n'):
     #if line.endswith('td>\n'):
-      print("line",line)
+      #print("line",line)
       words = line.split('><td>')
       rank=words[1][0:-4]
       malename=words[2][0:-4]
       femalename=words[3][0:-6]
-      print("rank, name1 name2", rank, malename, femalename)
+      #print("rank, name1 name2", rank, malename, femalename)
       if malename not in dictname:
         dictname[malename]=rank
       if femalename not in dictname:
@@ -132,7 +132,11 @@ def main():
   if not summary:
     extract_names(args[0], 0)
   else:
-    extract_names(args[0], 1)
+    n=0
+    m=len(args)
+    while n<m:
+      extract_names(args[n], 1)
+      n=n+1
   #----------------2nabanana ends here----------------------#
   
 if __name__ == '__main__':
